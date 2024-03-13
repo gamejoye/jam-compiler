@@ -1,0 +1,10 @@
+Class Main extends B {
+  let s: String = "Hello, gamejoye!";
+  let x: (new B).f();
+};
+
+Class B {
+  f(): Int {
+    return 1;
+  };
+};
