@@ -1,0 +1,7 @@
+Class Main {
+  let x: Int = 10;
+  main(): Bool {
+    let status: Bool = x >= 100;
+    return status;
+  };
+};

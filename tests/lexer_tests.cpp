@@ -56,3 +56,19 @@ TEST(LexerGoodTest, CanRecognizeTokens3) {
 
   fclose(yyin);
 }
+
+TEST(LexerGoodTest, CanRecognizeTokens4) {
+  yyin = fopen((examplesDir + "good_test4.jam").c_str(), "r");
+  std::ifstream targetFile(examplesDir + "good_test4.expected");
+  int token;
+  std::string expected;
+  while ((token = yylex()) != 0 && std::getline(targetFile, expected)) {
+    ASSERT_EQ(expected, mapToToken(token));
+  }
+
+  if(token != 0) {
+    ASSERT_TRUE(false);
+  }
+
+  fclose(yyin);
+}

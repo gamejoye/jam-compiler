@@ -22,5 +22,9 @@ TEST(Utility_MapToToken_Test, Utility_MapToToken_Test_ShouldReturn_Test) {
   ASSERT_EQ(mapToToken(STR_CONST), "STR_CONST");
   ASSERT_EQ(mapToToken(OBJECTID), "OBJECTID");
   ASSERT_EQ(mapToToken(TYPEID), "TYPEID");
+  ASSERT_EQ(mapToToken(LE), "LE");
+  ASSERT_EQ(mapToToken(RE), "RE");
+  ASSERT_EQ(mapToToken(NE), "NE");
+  ASSERT_EQ(mapToToken(EQ), "EQ");
   ASSERT_EQ(mapToToken(ERROR), "ERROR");
 }
