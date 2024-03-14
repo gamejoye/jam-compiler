@@ -242,12 +242,12 @@ public:
   BoolExpr(std::string val) { this->val = val; }
 };
 
-class StringExpr : public Expression {
+class StrExpr : public Expression {
 protected:
   std::string val;
 
 public:
-  StringExpr(std::string val) { this->val = val; }
+  StrExpr(std::string val) { this->val = val; }
 };
 
 class ReturnStat : public Statement {
