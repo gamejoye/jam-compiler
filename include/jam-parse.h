@@ -18,10 +18,10 @@ enum yytokentype {
   OBJECTID = 271,
   TYPEID = 272,
   LE = 273,
-  RE = 273,
-  NE = 274,
-  EQ = 275,
-  ERROR = 276,
+  RE = 274,
+  NE = 275,
+  EQ = 276,
+  ERROR = 277,
 };
 
 #define CLASS 258
@@ -39,8 +39,14 @@ enum yytokentype {
 #define STR_CONST 270
 #define OBJECTID 271
 #define TYPEID 272
-#define ERROR 273
+#define LE 273
+#define RE 274
+#define NE 275
+#define EQ 276
+#define ERROR 277
 
-// typedef union YYSTYPE {
-//   std::string error_msg;
-// };
+typedef union YYSTYPE {
+  int boolean;
+  std::string symbol;
+  std::string errorMsg;
+};

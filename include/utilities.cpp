@@ -47,6 +47,18 @@ std::string mapToToken(int val) {
       return "TYPEID";
     }
     case 273: {
+      return "LE";
+    }
+    case 274: {
+      return "RE";
+    }
+    case 275: {
+      return "NE";
+    }
+    case 276: {
+      return "EQ";
+    }
+    case 277: {
       return "ERROR";
     }
     default: {

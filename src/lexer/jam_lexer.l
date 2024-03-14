@@ -3,6 +3,7 @@
 #include "iostream"
 
 // extern int curr_lineno;
+extern
 %}
 
 %Start        STRING
