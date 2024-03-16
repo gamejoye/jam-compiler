@@ -1,78 +1,115 @@
+#pragma once
+
 #include <string>
 #include <vector>
 
-class Program {};
+class Program;
+class Class;
+class Feature;
+class Formal;
+class Expression;
+class Statement;
+
+using Symbol = std::string *;
+template <typename T> using List = std::vector<T> *;
+
+class Program {
+protected:
+  List<Class *> classes;
+
+public:
+  Program() {}
+  Program(List<Class *> classes) { this->classes = classes; }
+  List<Class *> getClasses() { return classes; }
+};
+
+extern Program *AstRoot;
 
 class Class {
 protected:
-  std::string name;
-  std::string parent;
-  std::vector<Feature *> features;
+  Symbol name;
+  Symbol parent;
+  List<Feature *> features;
 
 public:
-  Class(std::string name, std::string parent, std::vector<Feature *> features) {
+  Class(Symbol name, Symbol parent, List<Feature *> features) {
     this->name = name;
     this->parent = parent;
     this->features = features;
   }
+  Symbol getName() { return name; }
+  Symbol getParent() { return parent; }
+  List<Feature *> getFeatures() { return features; }
 };
 
 class Feature {
   // public:
-  //   virtual void checkFeature() = 0;
+  //   virtual Symbol checkFeature() = 0;
 };
 
 class Expression {
-// public:
-//   virtual std::string checkExpr() = 0;
+  // public:
+  //   virtual Symbol checkExpr() = 0;
 };
 
 class Statement {
-// public:
-//   virtual void checkStat() = 0;
+  // public:
+  //   virtual void checkStat() = 0;
 };
 
 class Method : public Feature {
 protected:
-  std::string name;
-  std::vector<Formal *> formals;
-  std::string returnType;
-  std::vector<Statement *> statements;
+  Symbol name;
+  List<Formal *> formals;
+  Symbol returnType;
+  List<Statement *> statements;
 
 public:
-  Method(std::string name, std::vector<Formal *> formals,
-         std::string returnType, std::vector<Statement *> statements) {
+  Method(Symbol name, List<Formal *> formals, Symbol returnType,
+         List<Statement *> statements) {
     this->name = name;
     this->formals = formals;
     this->returnType = returnType;
     this->statements = statements;
   }
+  Symbol getName() { return name; }
+  List<Formal *> getFormals() { return formals; }
+  Symbol getReturnType() { return returnType; }
+  List<Statement *> getStatements() { return statements; }
 };
 
 class Attribute : public Feature {
 protected:
-  std::string name;
-  std::string type;
+  Symbol name;
+  Symbol type;
   Expression *init;
 
 public:
-  Attribute(std::string name, std::string type, Expression *init) {
+  Attribute(Symbol name, Symbol type, Expression *init) {
     this->name = name;
     this->type = type;
     this->init = init;
   }
+  Symbol getName() { return name; }
+  Symbol getType() { return type; }
+  Expression* getInit() { return init; }
 };
 
 class Formal {
 protected:
-  std::string name;
-  std::string type;
+  Symbol name;
+  Symbol type;
 
 public:
-  Formal(std::string name, std::string type) {
+  Formal(Symbol name, Symbol type) {
     this->name = name;
     this->type = type;
   }
+};
+
+class NilExpression : public Expression {
+public:
+  NilExpression() {}
 };
 
 class PlusExpr : public Expression {
@@ -195,6 +232,18 @@ public:
   }
 };
 
+class AssignExpr : public Expression {
+protected:
+  Symbol name;
+  Expression *expr;
+
+public:
+  AssignExpr(Symbol name, Expression *expr) {
+    this->name = name;
+    this->expr = expr;
+  }
+};
+
 class NotExpr : public Expression {
 protected:
   Expression *e1;
@@ -206,12 +255,11 @@ public:
 class DispatchExpr : public Expression {
 protected:
   Expression *expr;
-  std::string calleeName;
-  std::vector<Expression *> actual;
+  Symbol calleeName;
+  List<Expression *> actual;
 
 public:
-  DispatchExpr(Expression *expr, std::string calleeName,
-               std::vector<Expression *> actual) {
+  DispatchExpr(Expression *expr, Symbol calleeName, List<Expression *> actual) {
     this->expr = expr;
     this->calleeName = calleeName;
     this->actual = actual;
@@ -220,34 +268,42 @@ public:
 
 class NewExpr : public Expression {
 protected:
-  std::string type;
+  Symbol type;
 
 public:
-  NewExpr(std::string type) { this->type = type; }
+  NewExpr(Symbol type) { this->type = type; }
+};
+
+class ObjectExpr : public Expression {
+protected:
+  Symbol name;
+
+public:
+  ObjectExpr(Symbol name) { this->name = name; }
 };
 
 class IntExpr : public Expression {
 protected:
-  std::string val;
+  Symbol val;
 
 public:
-  IntExpr(std::string val) { this->val = val; }
+  IntExpr(Symbol val) { this->val = val; }
 };
 
 class BoolExpr : public Expression {
 protected:
-  std::string val;
+  Symbol val;
 
 public:
-  BoolExpr(std::string val) { this->val = val; }
+  BoolExpr(Symbol val) { this->val = val; }
 };
 
 class StrExpr : public Expression {
 protected:
-  std::string val;
+  Symbol val;
 
 public:
-  StrExpr(std::string val) { this->val = val; }
+  StrExpr(Symbol val) { this->val = val; }
 };
 
 class ReturnStat : public Statement {
@@ -261,12 +317,12 @@ public:
 class IfThenElseStat : public Statement {
 protected:
   Expression *condition;
-  Statement *thenBlock;
-  Statement *elseBlock;
+  List<Statement *> thenBlock;
+  List<Statement *> elseBlock;
 
 public:
-  IfThenElseStat(Expression *condition, Statement *thenBlock,
-                 Statement *elseBlock) {
+  IfThenElseStat(Expression *condition, List<Statement *> thenBlock,
+                 List<Statement *> elseBlock) {
     this->condition = condition;
     this->thenBlock = thenBlock;
     this->elseBlock = elseBlock;
@@ -275,14 +331,14 @@ public:
 
 class ForLoopStat : public Statement {
 protected:
-  Statement *start;
+  List<Expression *> start;
   Expression *condition;
-  Expression *next;
-  Statement *body;
+  List<Expression *> next;
+  List<Statement *> body;
 
 public:
-  ForLoopStat(Statement *start, Expression *condition, Expression *next,
-              Statement *body) {
+  ForLoopStat(List<Expression *> start, Expression *condition,
+              List<Expression *> next, List<Statement *> body) {
     this->start = start;
     this->condition = condition;
     this->next = next;
@@ -290,14 +346,14 @@ public:
   }
 };
 
-class LetStat : public Statement {
+class VarStat : public Statement {
 protected:
-  std::string name;
-  std::string type;
+  Symbol name;
+  Symbol type;
   Expression *init;
 
 public:
-  LetStat(std::string name, std::string type, Expression *init) {
+  VarStat(Symbol name, Symbol type, Expression *init) {
     this->name = name;
     this->type = type;
     this->init = init;
