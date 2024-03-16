@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 #include <fstream>
 #include "utilities.h"
-#include "jam-parse.h"
+#include "jam-parser.tab.hh"
 
 static std::string examplesDir = "tests/lexer_test_examples/";
 
@@ -16,6 +16,7 @@ TEST(Utility_MapToToken_Test, Utility_MapToToken_Test_ShouldReturn_Test) {
   ASSERT_EQ(mapToToken(RETURN), "RETURN");
   ASSERT_EQ(mapToToken(EXTENDS), "EXTENDS");
   ASSERT_EQ(mapToToken(LET), "LET");
+  ASSERT_EQ(mapToToken(VAR), "VAR");
   ASSERT_EQ(mapToToken(NEW), "NEW");
   ASSERT_EQ(mapToToken(INT_CONST), "INT_CONST");
   ASSERT_EQ(mapToToken(BOOL_CONST), "BOOL_CONST");
