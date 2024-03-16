@@ -1,0 +1,6 @@
+Class Main {
+  let x: Int;
+  age(): Int { return 18; };
+  name(): String { return "gamejoye"; };
+  hobby(): String { return "coding"; };
+};
