@@ -9,6 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 
 # 包含src、tests目录
 add_subdirectory(src/lexer)
+add_subdirectory(src/parser)
 add_subdirectory(tests)
 
 include_directories(${CMAKE_SOURCE_DIR}/include)
