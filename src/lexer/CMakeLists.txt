@@ -9,7 +9,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 find_package(FLEX REQUIRED)
 
 # 使用Flex处理lexer文件
-FLEX_TARGET(JamLexer jam_lexer.l ${CMAKE_CURRENT_BINARY_DIR}/jam_lexer.cpp)
+FLEX_TARGET(JamLexer jam-lexer.l ${CMAKE_CURRENT_BINARY_DIR}/jam-lexer.cpp)
 
 # 创建一个静态库，包含Flex生成的C++代码
 add_library(jamlexer STATIC ${FLEX_JamLexer_OUTPUTS})

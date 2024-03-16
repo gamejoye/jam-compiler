@@ -1,9 +1,9 @@
 %{
-#include "jam-parse.h"
-#include "iostream"
+  #include <iostream>
+  #include <utilities.h>
+  #include "jam-parser.tab.hh"
 
-// extern int curr_lineno;
-extern
+  extern YYSTYPE yylval;
 %}
 
 %Start        STRING
@@ -16,7 +16,7 @@ extern
 
  /* 字符串常量遇见 文件结束符 */
 <STRING><<EOF>> {
-  // yylval.error_msg = "EOF in string constant";
+  // yylval.errorMsg = "EOF in string constant";
   BEGIN 0;
   yyrestart(yyin);
   return ERROR;
@@ -29,7 +29,7 @@ extern
 
  /* 字符串常量遇见回车 */
 <STRING>"\n" {
-  // yylval.error_msg = "Unterminated string constant";
+  // yylval.errorMsg = "Unterminated string constant";
   BEGIN 0;
   // curr_lineno++;
   return ERROR;
@@ -44,7 +44,7 @@ extern
   for(int i = 0; i < input.size(); i++) {
     if(input[i] == '\0') {
       BEGIN 0;
-      // yylval.error_msg = "string contains null character";
+      // yylval.errorMsg = "string contains null character";
       return ERROR;
     }
     if(input[i] == '\\') {
@@ -74,7 +74,7 @@ extern
   }
   if(output.size() > 1024) {
     BEGIN 0;
-    // yylval.error_msg = "string constant to long";
+    // yylval.errorMsg = "string constant to long";
     return ERROR;
   }
   // yylval.symbol = stringtable.add_string((char*)output.c_str());
@@ -134,6 +134,10 @@ extern
   return LET;
 }
 
+"var" {
+  return VAR;
+}
+
 "new" {
   return NEW;
 }
@@ -143,10 +147,12 @@ extern
 }
 
 [a-z][A-Za-z0-9_]* {
+  yylval.symbol = new std::string(yytext);
   return OBJECTID;
 }
 
 [A-Z][A-za-z0-9_]* {
+  yylval.symbol = new std::string(yytext);
   return TYPEID;
 }
 
@@ -231,7 +237,7 @@ extern
 }
 
 [^"\n"] {
-  // yylval.error_msg = yytext;
+  // yylval.errorMsg = yytext;
   return ERROR;
 }
 
