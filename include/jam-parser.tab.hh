@@ -1,14 +1,14 @@
-/* A Bison parser, made by GNU Bison 2.3.  */
+/* A Bison parser, made by GNU Bison 3.8.2.  */
 
-/* Skeleton interface for Bison's Yacc-like parsers in C
+/* Bison interface for Yacc-like parsers in C
 
-   Copyright (C) 1984, 1989, 1990, 2000, 2001, 2002, 2003, 2004, 2005, 2006
-   Free Software Foundation, Inc.
+   Copyright (C) 1984, 1989-1990, 2000-2015, 2018-2021 Free Software Foundation,
+   Inc.
 
-   This program is free software; you can redistribute it and/or modify
+   This program is free software: you can redistribute it and/or modify
    it under the terms of the GNU General Public License as published by
-   the Free Software Foundation; either version 2, or (at your option)
-   any later version.
+   the Free Software Foundation, either version 3 of the License, or
+   (at your option) any later version.
 
    This program is distributed in the hope that it will be useful,
    but WITHOUT ANY WARRANTY; without even the implied warranty of
@@ -16,9 +16,7 @@
    GNU General Public License for more details.
 
    You should have received a copy of the GNU General Public License
-   along with this program; if not, write to the Free Software
-   Foundation, Inc., 51 Franklin Street, Fifth Floor,
-   Boston, MA 02110-1301, USA.  */
+   along with this program.  If not, see <https://www.gnu.org/licenses/>.  */
 
 /* As a special exception, you may create a larger work that contains
    part or all of the Bison parser skeleton and distribute that work
@@ -33,65 +31,60 @@
    This special exception was added by the Free Software Foundation in
    version 2.2 of Bison.  */
 
-/* Tokens.  */
+/* DO NOT RELY ON FEATURES THAT ARE NOT DOCUMENTED in the manual,
+   especially those whose name start with YY_ or yy_.  They are
+   private implementation details that can be changed or removed.  */
+
+#ifndef YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED
+# define YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED
+/* Debug traces.  */
+#ifndef YYDEBUG
+# define YYDEBUG 0
+#endif
+#if YYDEBUG
+extern int yydebug;
+#endif
+
+/* Token kinds.  */
 #ifndef YYTOKENTYPE
 # define YYTOKENTYPE
-   /* Put the tokens into the symbol table, so that GDB and other debuggers
-      know about them.  */
-   enum yytokentype {
-     CLASS = 258,
-     IF = 259,
-     THEN = 260,
-     ELSE = 261,
-     FOR = 262,
-     IN = 263,
-     RETURN = 264,
-     EXTENDS = 265,
-     LET = 266,
-     VAR = 267,
-     NEW = 268,
-     ERROR = 278,
-     LE = 274,
-     RE = 275,
-     NE = 276,
-     EQ = 277,
-     INT_CONST = 269,
-     BOOL_CONST = 270,
-     STR_CONST = 271,
-     OBJECTID = 272,
-     TYPEID = 273
-   };
+  enum yytokentype
+  {
+    YYEMPTY = -2,
+    YYEOF = 0,                     /* "end of file"  */
+    YYerror = 256,                 /* error  */
+    YYUNDEF = 279,                 /* "invalid token"  */
+    CLASS = 258,                   /* CLASS  */
+    IF = 259,                      /* IF  */
+    THEN = 260,                    /* THEN  */
+    ELSE = 261,                    /* ELSE  */
+    FOR = 262,                     /* FOR  */
+    IN = 263,                      /* IN  */
+    RETURN = 264,                  /* RETURN  */
+    EXTENDS = 265,                 /* EXTENDS  */
+    LET = 266,                     /* LET  */
+    VAR = 267,                     /* VAR  */
+    NEW = 268,                     /* NEW  */
+    ERROR = 278,                   /* ERROR  */
+    LE = 274,                      /* LE  */
+    RE = 275,                      /* RE  */
+    NE = 276,                      /* NE  */
+    EQ = 277,                      /* EQ  */
+    INT_CONST = 269,               /* INT_CONST  */
+    BOOL_CONST = 270,              /* BOOL_CONST  */
+    STR_CONST = 271,               /* STR_CONST  */
+    OBJECTID = 272,                /* OBJECTID  */
+    TYPEID = 273                   /* TYPEID  */
+  };
+  typedef enum yytokentype yytoken_kind_t;
 #endif
-/* Tokens.  */
-#define CLASS 258
-#define IF 259
-#define THEN 260
-#define ELSE 261
-#define FOR 262
-#define IN 263
-#define RETURN 264
-#define EXTENDS 265
-#define LET 266
-#define VAR 267
-#define NEW 268
-#define ERROR 278
-#define LE 274
-#define RE 275
-#define NE 276
-#define EQ 277
-#define INT_CONST 269
-#define BOOL_CONST 270
-#define STR_CONST 271
-#define OBJECTID 272
-#define TYPEID 273
 
-
-
-
+/* Value type.  */
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
-typedef union YYSTYPE
-#line 14 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+union YYSTYPE
 {
+#line 14 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+
   int boolean;
   Symbol symbol;
   Program* program;
@@ -106,28 +99,34 @@ typedef union YYSTYPE
   Statement* statement;
   List<Statement*> statements;
   Symbol errorMsg;
-}
-/* Line 1529 of yacc.c.  */
-#line 112 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.hh"
-	YYSTYPE;
-# define yystype YYSTYPE /* obsolescent; will be withdrawn */
-# define YYSTYPE_IS_DECLARED 1
+
+#line 104 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.hh"
+
+};
+typedef union YYSTYPE YYSTYPE;
 # define YYSTYPE_IS_TRIVIAL 1
+# define YYSTYPE_IS_DECLARED 1
 #endif
 
-extern YYSTYPE yylval;
-
+/* Location type.  */
 #if ! defined YYLTYPE && ! defined YYLTYPE_IS_DECLARED
-typedef struct YYLTYPE
+typedef struct YYLTYPE YYLTYPE;
+struct YYLTYPE
 {
   int first_line;
   int first_column;
   int last_line;
   int last_column;
-} YYLTYPE;
-# define yyltype YYLTYPE /* obsolescent; will be withdrawn */
+};
 # define YYLTYPE_IS_DECLARED 1
 # define YYLTYPE_IS_TRIVIAL 1
 #endif
 
+
+extern YYSTYPE yylval;
 extern YYLTYPE yylloc;
+
+int yyparse (void);
+
+
+#endif /* !YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED  */
