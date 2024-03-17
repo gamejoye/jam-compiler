@@ -18,6 +18,7 @@ jobs:
           brew install cmake
           brew install flex
           brew install bison
+          brew install googletest
       - name: Create build Directory
         run: mkdir build && cd build
       - name: Configure CMake
