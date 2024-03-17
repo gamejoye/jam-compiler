@@ -15,4 +15,7 @@ FLEX_TARGET(JamLexer jam-lexer.l ${CMAKE_CURRENT_BINARY_DIR}/jam-lexer.cpp)
 add_library(jamlexer STATIC ${FLEX_JamLexer_OUTPUTS})
 
 # 将当前构建目录添加到包含目录，以便找到Flex生成的头文件
-target_include_directories(jamlexer PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(jamlexer PUBLIC ${CMAKE_SOURCE_DIR}/src/table)
+target_include_directories(jamlexer PUBLIC ${CMAKE_SOURCE_DIR}/src/tree)
+target_include_directories(jamlexer PUBLIC ${CMAKE_SOURCE_DIR}/src/parser)
+target_include_directories(jamlexer PUBLIC ${CMAKE_SOURCE_DIR}/src/utilities)

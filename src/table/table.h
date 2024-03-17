@@ -29,13 +29,13 @@ extern StringTable stringtable;
 extern IntTable inttable;
 extern IdTable idtable;
 
-template <typename T> class SymbolTable {
+template <typename K, typename V> class SymbolTable {
 protected:
-  List<List<T *>> itemsList;
+  List<List<std::pair<K, V>>> itemsList;
 
 public:
   void enterScope() {
-    List<T *> newItems = new std::vector<T *>(0);
+    List<std::pair<K, V>> newItems = new std::vector<std::pair<K, V>>(0);
     itemsList->push_back(newItems);
   }
   void exitScope() {
@@ -45,16 +45,16 @@ public:
     }
     itemsList->pop_back();
   }
-  T *lookup(T item) {
+  V lookup(K item) {
     int n = itemsList->size();
     // start with the deepest nesting
     for (int i = n - 1; i >= 0; i--) {
-      List<T *> items = itemsList->at(i);
+      List<std::pair<K, V>> items = itemsList->at(i);
       int m = items->size();
       for (int j = 0; j < m; j++) {
-        T *current = items->at(j);
-        if (*current == item) {
-          return current;
+        std::pair<K, V> current = items->at(j);
+        if (current->first == item) {
+          return current->second;
         }
       }
     }

@@ -21,6 +21,7 @@ public:
   Program() {}
   Program(List<Class *> classes) { this->classes = classes; }
   List<Class *> getClasses() { return classes; }
+  virtual void checkProgram();
 };
 
 extern Program *AstRoot;
@@ -43,18 +44,18 @@ public:
 };
 
 class Feature {
-  // public:
-  //   virtual Symbol checkFeature() = 0;
+  public:
+    // virtual void checkFeature() = 0;
 };
 
 class Expression {
-  // public:
-  //   virtual Symbol checkExpr() = 0;
+  public:
+    // virtual Symbol checkExpr() = 0;
 };
 
 class Statement {
-  // public:
-  //   virtual void checkStat() = 0;
+  public:
+    // virtual void checkStat() = 0;
 };
 
 class Method : public Feature {
@@ -105,6 +106,8 @@ public:
     this->name = name;
     this->type = type;
   }
+  Symbol getName() { return name; }
+  Symbol getType() { return type; }
 };
 
 class NilExpression : public Expression {
@@ -242,6 +245,7 @@ public:
     this->name = name;
     this->expr = expr;
   }
+  Symbol getName() { return name; }
 };
 
 class NotExpr : public Expression {
@@ -264,6 +268,7 @@ public:
     this->calleeName = calleeName;
     this->actual = actual;
   }
+  Symbol getCalleName() { return calleeName; }
 };
 
 class NewExpr : public Expression {
@@ -272,11 +277,13 @@ protected:
 
 public:
   NewExpr(Symbol type) { this->type = type; }
+  Symbol getType() { return type; }
 };
 
 class ObjectExpr : public Expression {
 protected:
   Symbol name;
+  Symbol getName() { return name; }
 
 public:
   ObjectExpr(Symbol name) { this->name = name; }
@@ -358,4 +365,6 @@ public:
     this->type = type;
     this->init = init;
   }
+  Symbol getName() { return name; }
+  Symbol getType() { return type; }
 };
