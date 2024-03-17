@@ -1,0 +1,31 @@
+name: Jam Compiler Ci
+on:
+  push: 
+    branches: [master]
+  pull_request: 
+    branches: [master]
+
+jobs:
+  build:
+    runs-on: macos-latest-large
+    steps:
+      - uses: actions/checkout@v4
+        with: 
+          submodules: 'recursive'
+      - name: Set Up Environment
+        run: |
+          brew update
+          brew install cmake
+          brew install flex
+          brew install bison
+      - name: Create build Directory
+        run: mkdir build && cd build
+      - name: Configure CMake
+        run: cmake ..
+        working-directory: ./build
+      - name: Build
+        run: cmake --build .
+        working-directory: ./build
+      - name: Run Tests
+        run: ctest
+        working-directory: ./build
