@@ -6,10 +6,10 @@ add_executable(lexer_tests lexer_tests.cpp)
 add_executable(parser_tests parser_tests.cpp)
 add_executable(utilities_tests utilities_tests.cpp)
 
-# 链接Google Test库和lexer库到测试执行文件
-target_link_libraries(lexer_tests ${GTEST_LIBRARIES} /opt/homebrew/lib/libgtest_main.a jamlexer jamlib)
-target_link_libraries(parser_tests ${GTEST_LIBRARIES} /opt/homebrew/lib/libgtest_main.a jamparser jamlib)
-target_link_libraries(utilities_tests ${GTEST_LIBRARIES} /opt/homebrew/lib/libgtest_main.a jamlexer jamlib)
+# 链接Google Test库和lexer库到测试执行文件 /opt/homebrew/lib/libgtest_main.a
+target_link_libraries(lexer_tests ${GTEST_LIBRARIES} gtest_main  jamlexer jamlib)
+target_link_libraries(parser_tests ${GTEST_LIBRARIES} gtest_main jamparser jamlib)
+target_link_libraries(utilities_tests ${GTEST_LIBRARIES} gtest_main jamlexer jamlib)
 
 add_test(
   NAME lexer_tests
