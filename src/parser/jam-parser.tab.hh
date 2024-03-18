@@ -70,8 +70,8 @@ extern int yydebug;
     RE = 275,                      /* RE  */
     NE = 276,                      /* NE  */
     EQ = 277,                      /* EQ  */
-    INT_CONST = 269,               /* INT_CONST  */
     BOOL_CONST = 270,              /* BOOL_CONST  */
+    INT_CONST = 269,               /* INT_CONST  */
     STR_CONST = 271,               /* STR_CONST  */
     OBJECTID = 272,                /* OBJECTID  */
     TYPEID = 273                   /* TYPEID  */

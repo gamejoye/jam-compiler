@@ -127,8 +127,8 @@ enum yysymbol_kind_t
   YYSYMBOL_RE = 16,                        /* RE  */
   YYSYMBOL_NE = 17,                        /* NE  */
   YYSYMBOL_EQ = 18,                        /* EQ  */
-  YYSYMBOL_INT_CONST = 19,                 /* INT_CONST  */
-  YYSYMBOL_BOOL_CONST = 20,                /* BOOL_CONST  */
+  YYSYMBOL_BOOL_CONST = 19,                /* BOOL_CONST  */
+  YYSYMBOL_INT_CONST = 20,                 /* INT_CONST  */
   YYSYMBOL_STR_CONST = 21,                 /* STR_CONST  */
   YYSYMBOL_OBJECTID = 22,                  /* OBJECTID  */
   YYSYMBOL_TYPEID = 23,                    /* TYPEID  */
@@ -546,20 +546,20 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     1,     2,     3,     4,
-       5,     6,     7,     8,     9,    10,    11,    12,    13,    19,
-      20,    21,    22,    23,    15,    16,    17,    18,    14,     2
+       5,     6,     7,     8,     9,    10,    11,    12,    13,    20,
+      19,    21,    22,    23,    15,    16,    17,    18,    14,     2
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_uint8 yyrline[] =
 {
-       0,    61,    61,    69,    72,    78,    81,    87,    90,    93,
-      99,   102,   108,   111,   117,   123,   126,   132,   135,   141,
-     144,   147,   150,   153,   156,   159,   162,   165,   168,   171,
-     174,   177,   180,   183,   186,   189,   192,   195,   201,   204,
-     210,   213,   219,   222,   225,   228,   231,   234,   240,   243,
-     249,   252
+       0,    62,    62,    70,    73,    79,    82,    88,    91,    94,
+     100,   103,   109,   112,   118,   124,   127,   133,   136,   142,
+     145,   148,   151,   154,   157,   160,   163,   166,   169,   172,
+     175,   178,   181,   184,   187,   190,   193,   196,   202,   205,
+     211,   214,   220,   223,   226,   229,   232,   235,   241,   244,
+     250,   253
 };
 #endif
 
@@ -577,7 +577,7 @@ static const char *const yytname[] =
 {
   "\"end of file\"", "error", "\"invalid token\"", "CLASS", "IF", "THEN",
   "ELSE", "FOR", "IN", "RETURN", "EXTENDS", "LET", "VAR", "NEW", "ERROR",
-  "LE", "RE", "NE", "EQ", "INT_CONST", "BOOL_CONST", "STR_CONST",
+  "LE", "RE", "NE", "EQ", "BOOL_CONST", "INT_CONST", "STR_CONST",
   "OBJECTID", "TYPEID", "'='", "'<'", "'>'", "'+'", "'-'", "'*'", "'/'",
   "'!'", "'.'", "'{'", "'}'", "';'", "':'", "'('", "')'", "','", "$accept",
   "program", "class", "classList", "feature", "notemptyFeatureList",
@@ -629,8 +629,8 @@ static const yytype_int8 yydefact[] =
        0,     0,     0,     0,     2,     0,     1,     5,     0,    13,
        6,     0,     0,     0,     0,    12,     0,    13,     0,    18,
       11,     3,     0,     0,     0,    16,    17,     0,    10,     4,
-       7,     0,     0,     0,     0,    14,    15,     0,     0,    35,
-      36,    37,    34,     0,     0,     8,     0,    32,     0,    30,
+       7,     0,     0,     0,     0,    14,    15,     0,     0,    36,
+      35,    37,    34,     0,     0,     8,     0,    32,     0,    30,
        0,     0,     0,     0,     0,     0,     0,     0,     0,     0,
        0,     0,    51,    29,    33,    26,    28,    24,    23,    25,
       27,    19,    20,    22,    21,     0,     0,     0,     0,     0,
@@ -1315,7 +1315,7 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: classList  */
-#line 62 "jam-parser.y"
+#line 63 "jam-parser.y"
 {
   (yyloc) = (yylsp[0]);
   AstRoot = new Program((yyvsp[0].classes));
@@ -1324,7 +1324,7 @@ yyreduce:
     break;
 
   case 3: /* class: CLASS TYPEID '{' featureList '}'  */
-#line 69 "jam-parser.y"
+#line 70 "jam-parser.y"
                                  {
   (yyval.class_) = new Class(((yyvsp[-3].symbol)), new std::string("Object"), (yyvsp[-1].features));
 }
@@ -1332,7 +1332,7 @@ yyreduce:
     break;
 
   case 4: /* class: CLASS TYPEID EXTENDS TYPEID '{' featureList '}'  */
-#line 72 "jam-parser.y"
+#line 73 "jam-parser.y"
                                                   {
   (yyval.class_) = new Class((yyvsp[-5].symbol), (yyvsp[-3].symbol), (yyvsp[-1].features));
 }
@@ -1340,7 +1340,7 @@ yyreduce:
     break;
 
   case 5: /* classList: class ';'  */
-#line 78 "jam-parser.y"
+#line 79 "jam-parser.y"
           {
   (yyval.classes) = singleClass((yyvsp[-1].class_));
 }
@@ -1348,7 +1348,7 @@ yyreduce:
     break;
 
   case 6: /* classList: class ';' classList  */
-#line 81 "jam-parser.y"
+#line 82 "jam-parser.y"
                       {
   (yyval.classes) = mergeClass(singleClass((yyvsp[-2].class_)), (yyvsp[0].classes));
 }
@@ -1356,7 +1356,7 @@ yyreduce:
     break;
 
   case 7: /* feature: LET OBJECTID ':' TYPEID  */
-#line 87 "jam-parser.y"
+#line 88 "jam-parser.y"
                         {
   (yyval.feature) = new Attribute((yyvsp[-2].symbol), (yyvsp[0].symbol), new NilExpression());
 }
@@ -1364,7 +1364,7 @@ yyreduce:
     break;
 
   case 8: /* feature: LET OBJECTID ':' TYPEID '=' expression  */
-#line 90 "jam-parser.y"
+#line 91 "jam-parser.y"
                                          {
   (yyval.feature) = new Attribute((yyvsp[-4].symbol), (yyvsp[-2].symbol), (yyvsp[0].expression));
 }
@@ -1372,7 +1372,7 @@ yyreduce:
     break;
 
   case 9: /* feature: OBJECTID '(' formalList ')' ':' TYPEID '{' statementList '}'  */
-#line 93 "jam-parser.y"
+#line 94 "jam-parser.y"
                                                                {
   (yyval.feature) = new Method((yyvsp[-8].symbol), (yyvsp[-6].formals), (yyvsp[-3].symbol), (yyvsp[-1].statements));
 }
@@ -1380,7 +1380,7 @@ yyreduce:
     break;
 
   case 10: /* notemptyFeatureList: feature ';' notemptyFeatureList  */
-#line 99 "jam-parser.y"
+#line 100 "jam-parser.y"
                                 {
   (yyval.features) = mergeFeature(singleFeature((yyvsp[-2].feature)), (yyvsp[0].features));
 }
@@ -1388,7 +1388,7 @@ yyreduce:
     break;
 
   case 11: /* notemptyFeatureList: feature ';'  */
-#line 102 "jam-parser.y"
+#line 103 "jam-parser.y"
               {
   (yyval.features) = singleFeature((yyvsp[-1].feature));
 }
@@ -1396,7 +1396,7 @@ yyreduce:
     break;
 
   case 12: /* featureList: notemptyFeatureList  */
-#line 108 "jam-parser.y"
+#line 109 "jam-parser.y"
                     {
   (yyval.features) = (yyvsp[0].features);
 }
@@ -1404,7 +1404,7 @@ yyreduce:
     break;
 
   case 13: /* featureList: %empty  */
-#line 111 "jam-parser.y"
+#line 112 "jam-parser.y"
   {
   (yyval.features) = nilFeatures();
 }
@@ -1412,7 +1412,7 @@ yyreduce:
     break;
 
   case 14: /* formal: OBJECTID ':' TYPEID  */
-#line 117 "jam-parser.y"
+#line 118 "jam-parser.y"
                     {
   (yyval.formal) = new Formal((yyvsp[-2].symbol), (yyvsp[0].symbol));
 }
@@ -1420,7 +1420,7 @@ yyreduce:
     break;
 
   case 15: /* notemptyFormalList: formal ',' notemptyFormalList  */
-#line 123 "jam-parser.y"
+#line 124 "jam-parser.y"
                               {
   (yyval.formals) = mergeFormal(singleFormal((yyvsp[-2].formal)), (yyvsp[0].formals));
 }
@@ -1428,7 +1428,7 @@ yyreduce:
     break;
 
   case 16: /* notemptyFormalList: formal  */
-#line 126 "jam-parser.y"
+#line 127 "jam-parser.y"
          {
   (yyval.formals) = singleFormal((yyvsp[0].formal));
 }
@@ -1436,7 +1436,7 @@ yyreduce:
     break;
 
   case 17: /* formalList: notemptyFormalList  */
-#line 132 "jam-parser.y"
+#line 133 "jam-parser.y"
                    {
   (yyval.formals) = (yyvsp[0].formals);
 }
@@ -1444,7 +1444,7 @@ yyreduce:
     break;
 
   case 18: /* formalList: %empty  */
-#line 135 "jam-parser.y"
+#line 136 "jam-parser.y"
   {
   (yyval.formals) = nilFormals();
 }
@@ -1452,7 +1452,7 @@ yyreduce:
     break;
 
   case 19: /* expression: expression '+' expression  */
-#line 141 "jam-parser.y"
+#line 142 "jam-parser.y"
                           {
   (yyval.expression) = new PlusExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1460,7 +1460,7 @@ yyreduce:
     break;
 
   case 20: /* expression: expression '-' expression  */
-#line 144 "jam-parser.y"
+#line 145 "jam-parser.y"
                             {
   (yyval.expression) = new SubExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1468,7 +1468,7 @@ yyreduce:
     break;
 
   case 21: /* expression: expression '/' expression  */
-#line 147 "jam-parser.y"
+#line 148 "jam-parser.y"
                             {
   (yyval.expression) = new DivExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1476,7 +1476,7 @@ yyreduce:
     break;
 
   case 22: /* expression: expression '*' expression  */
-#line 150 "jam-parser.y"
+#line 151 "jam-parser.y"
                             {
   (yyval.expression) = new MulExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1484,7 +1484,7 @@ yyreduce:
     break;
 
   case 23: /* expression: expression EQ expression  */
-#line 153 "jam-parser.y"
+#line 154 "jam-parser.y"
                            {
   (yyval.expression) = new EqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1492,7 +1492,7 @@ yyreduce:
     break;
 
   case 24: /* expression: expression NE expression  */
-#line 156 "jam-parser.y"
+#line 157 "jam-parser.y"
                            {
   (yyval.expression) = new NeExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1500,7 +1500,7 @@ yyreduce:
     break;
 
   case 25: /* expression: expression '<' expression  */
-#line 159 "jam-parser.y"
+#line 160 "jam-parser.y"
                             {
   (yyval.expression) = new LtExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1508,7 +1508,7 @@ yyreduce:
     break;
 
   case 26: /* expression: expression LE expression  */
-#line 162 "jam-parser.y"
+#line 163 "jam-parser.y"
                            {
   (yyval.expression) = new LeqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1516,7 +1516,7 @@ yyreduce:
     break;
 
   case 27: /* expression: expression '>' expression  */
-#line 165 "jam-parser.y"
+#line 166 "jam-parser.y"
                             {
   (yyval.expression) = new RtExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1524,7 +1524,7 @@ yyreduce:
     break;
 
   case 28: /* expression: expression RE expression  */
-#line 168 "jam-parser.y"
+#line 169 "jam-parser.y"
                            {
   (yyval.expression) = new ReqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
@@ -1532,7 +1532,7 @@ yyreduce:
     break;
 
   case 29: /* expression: OBJECTID '=' expression  */
-#line 171 "jam-parser.y"
+#line 172 "jam-parser.y"
                           {
   (yyval.expression) = new AssignExpr((yyvsp[-2].symbol), (yyvsp[0].expression));
 }
@@ -1540,7 +1540,7 @@ yyreduce:
     break;
 
   case 30: /* expression: '!' expression  */
-#line 174 "jam-parser.y"
+#line 175 "jam-parser.y"
                  {
   (yyval.expression) = new NotExpr((yyvsp[0].expression));
 }
@@ -1548,7 +1548,7 @@ yyreduce:
     break;
 
   case 31: /* expression: expression '.' OBJECTID '(' expressionList ')'  */
-#line 177 "jam-parser.y"
+#line 178 "jam-parser.y"
                                                  {
   (yyval.expression) = new DispatchExpr((yyvsp[-5].expression), (yyvsp[-3].symbol), (yyvsp[-1].expressions));
 }
@@ -1556,7 +1556,7 @@ yyreduce:
     break;
 
   case 32: /* expression: NEW TYPEID  */
-#line 180 "jam-parser.y"
+#line 181 "jam-parser.y"
              {
   (yyval.expression) = new NewExpr((yyvsp[0].symbol));
 }
@@ -1564,7 +1564,7 @@ yyreduce:
     break;
 
   case 33: /* expression: '(' expression ')'  */
-#line 183 "jam-parser.y"
+#line 184 "jam-parser.y"
                      {
   (yyval.expression) = (yyvsp[-1].expression);
 }
@@ -1572,7 +1572,7 @@ yyreduce:
     break;
 
   case 34: /* expression: OBJECTID  */
-#line 186 "jam-parser.y"
+#line 187 "jam-parser.y"
            {
   (yyval.expression) = new ObjectExpr((yyvsp[0].symbol));
 }
@@ -1580,7 +1580,7 @@ yyreduce:
     break;
 
   case 35: /* expression: INT_CONST  */
-#line 189 "jam-parser.y"
+#line 190 "jam-parser.y"
             {
   (yyval.expression) = new IntExpr((yyvsp[0].symbol));
 }
@@ -1588,15 +1588,15 @@ yyreduce:
     break;
 
   case 36: /* expression: BOOL_CONST  */
-#line 192 "jam-parser.y"
+#line 193 "jam-parser.y"
              {
-  (yyval.expression) = new BoolExpr((yyvsp[0].symbol));
+  (yyval.expression) = new BoolExpr((yyvsp[0].boolean));
 }
 #line 1596 "jam-parser.tab.cc"
     break;
 
   case 37: /* expression: STR_CONST  */
-#line 195 "jam-parser.y"
+#line 196 "jam-parser.y"
             {
   (yyval.expression) = new StrExpr((yyvsp[0].symbol));
 }
@@ -1604,7 +1604,7 @@ yyreduce:
     break;
 
   case 38: /* notemptyExpressionList: expression ',' notemptyExpressionList  */
-#line 201 "jam-parser.y"
+#line 202 "jam-parser.y"
                                       {
   (yyval.expressions) = mergeExpression(singleExpression((yyvsp[-2].expression)), (yyvsp[0].expressions));
 }
@@ -1612,7 +1612,7 @@ yyreduce:
     break;
 
   case 39: /* notemptyExpressionList: expression  */
-#line 204 "jam-parser.y"
+#line 205 "jam-parser.y"
              {
   (yyval.expressions) = singleExpression((yyvsp[0].expression));
 }
@@ -1620,7 +1620,7 @@ yyreduce:
     break;
 
   case 40: /* expressionList: notemptyExpressionList  */
-#line 210 "jam-parser.y"
+#line 211 "jam-parser.y"
                        {
   (yyval.expressions) = (yyvsp[0].expressions);
 }
@@ -1628,7 +1628,7 @@ yyreduce:
     break;
 
   case 41: /* expressionList: %empty  */
-#line 213 "jam-parser.y"
+#line 214 "jam-parser.y"
   {
   (yyval.expressions) = nilExpressions();
 }
@@ -1636,7 +1636,7 @@ yyreduce:
     break;
 
   case 42: /* statement: RETURN expression  */
-#line 219 "jam-parser.y"
+#line 220 "jam-parser.y"
                   {
   (yyval.statement) = new ReturnStat((yyvsp[0].expression));
 }
@@ -1644,7 +1644,7 @@ yyreduce:
     break;
 
   case 43: /* statement: IF expression THEN '{' statementList '}'  */
-#line 222 "jam-parser.y"
+#line 223 "jam-parser.y"
                                            {
   (yyval.statement) = new IfThenElseStat((yyvsp[-4].expression), (yyvsp[-1].statements), nilStatements());
 }
@@ -1652,7 +1652,7 @@ yyreduce:
     break;
 
   case 44: /* statement: IF expression THEN '{' statementList '}' ELSE '{' statementList '}'  */
-#line 225 "jam-parser.y"
+#line 226 "jam-parser.y"
                                                                       {
   (yyval.statement) = new IfThenElseStat((yyvsp[-8].expression), (yyvsp[-5].statements), (yyvsp[-1].statements));
 }
@@ -1660,7 +1660,7 @@ yyreduce:
     break;
 
   case 45: /* statement: FOR '(' expressionList ';' expression ';' expressionList ')' IN '{' statementList '}'  */
-#line 228 "jam-parser.y"
+#line 229 "jam-parser.y"
                                                                                         {
   (yyval.statement) = new ForLoopStat((yyvsp[-9].expressions), (yyvsp[-7].expression), (yyvsp[-5].expressions), (yyvsp[-1].statements));
 }
@@ -1668,7 +1668,7 @@ yyreduce:
     break;
 
   case 46: /* statement: VAR OBJECTID ':' TYPEID  */
-#line 231 "jam-parser.y"
+#line 232 "jam-parser.y"
                           {
   (yyval.statement) = new VarStat((yyvsp[-2].symbol), (yyvsp[0].symbol), new NilExpression());
 }
@@ -1676,7 +1676,7 @@ yyreduce:
     break;
 
   case 47: /* statement: VAR OBJECTID ':' TYPEID '=' expression  */
-#line 234 "jam-parser.y"
+#line 235 "jam-parser.y"
                                          {
   (yyval.statement) = new VarStat((yyvsp[-4].symbol), (yyvsp[-2].symbol), (yyvsp[0].expression));
 }
@@ -1684,7 +1684,7 @@ yyreduce:
     break;
 
   case 48: /* notemptyStatementList: statement ';' notemptyStatementList  */
-#line 240 "jam-parser.y"
+#line 241 "jam-parser.y"
                                     {
   (yyval.statements) = mergeStatement(singleStatement((yyvsp[-2].statement)), (yyvsp[0].statements));
 }
@@ -1692,7 +1692,7 @@ yyreduce:
     break;
 
   case 49: /* notemptyStatementList: statement ';'  */
-#line 243 "jam-parser.y"
+#line 244 "jam-parser.y"
                 {
   (yyval.statements) = singleStatement((yyvsp[-1].statement));
 }
@@ -1700,7 +1700,7 @@ yyreduce:
     break;
 
   case 50: /* statementList: notemptyStatementList  */
-#line 249 "jam-parser.y"
+#line 250 "jam-parser.y"
                       {
   (yyval.statements) = (yyvsp[0].statements);
 }
@@ -1708,7 +1708,7 @@ yyreduce:
     break;
 
   case 51: /* statementList: %empty  */
-#line 252 "jam-parser.y"
+#line 253 "jam-parser.y"
   {
   (yyval.statements) = nilStatements();
 }
