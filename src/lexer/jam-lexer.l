@@ -94,10 +94,12 @@
 }
 
 "true" {
+  yylval.boolean = 1;
   return BOOL_CONST;
 }
 
 "false" {
+  yylval.boolean = 0;
   return BOOL_CONST;
 }
 
@@ -146,6 +148,7 @@
 }
 
 [0-9]+ {
+  yylval.symbol = inttable.add(yytext);
   return INT_CONST;
 }
 
