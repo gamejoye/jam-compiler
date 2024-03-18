@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED
-# define YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED
+#ifndef YY_YY_JAM_PARSER_TAB_HH_INCLUDED
+# define YY_YY_JAM_PARSER_TAB_HH_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -83,7 +83,7 @@ extern int yydebug;
 #if ! defined YYSTYPE && ! defined YYSTYPE_IS_DECLARED
 union YYSTYPE
 {
-#line 14 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 14 "jam-parser.y"
 
   int boolean;
   Symbol symbol;
@@ -100,7 +100,7 @@ union YYSTYPE
   List<Statement*> statements;
   Symbol errorMsg;
 
-#line 104 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.hh"
+#line 104 "jam-parser.tab.hh"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -129,4 +129,4 @@ extern YYLTYPE yylloc;
 int yyparse (void);
 
 
-#endif /* !YY_YY_USERS_GAMEJOYE_COMPILER_JAM_INCLUDE_JAM_PARSER_TAB_HH_INCLUDED  */
+#endif /* !YY_YY_JAM_PARSER_TAB_HH_INCLUDED  */

@@ -67,7 +67,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 1 "jam-parser.y"
 
   #include <iostream>
   #include <vector>
@@ -80,7 +80,7 @@
   extern Program* AstRoot;
   List<Class*> parseResults;
 
-#line 84 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 84 "jam-parser.tab.cc"
 
 # ifndef YY_CAST
 #  ifdef __cplusplus
@@ -1315,408 +1315,408 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* program: classList  */
-#line 62 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 62 "jam-parser.y"
 {
   (yyloc) = (yylsp[0]);
   AstRoot = new Program((yyvsp[0].classes));
 }
-#line 1324 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1324 "jam-parser.tab.cc"
     break;
 
   case 3: /* class: CLASS TYPEID '{' featureList '}'  */
-#line 69 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 69 "jam-parser.y"
                                  {
   (yyval.class_) = new Class(((yyvsp[-3].symbol)), new std::string("Object"), (yyvsp[-1].features));
 }
-#line 1332 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1332 "jam-parser.tab.cc"
     break;
 
   case 4: /* class: CLASS TYPEID EXTENDS TYPEID '{' featureList '}'  */
-#line 72 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 72 "jam-parser.y"
                                                   {
   (yyval.class_) = new Class((yyvsp[-5].symbol), (yyvsp[-3].symbol), (yyvsp[-1].features));
 }
-#line 1340 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1340 "jam-parser.tab.cc"
     break;
 
   case 5: /* classList: class ';'  */
-#line 78 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 78 "jam-parser.y"
           {
   (yyval.classes) = singleClass((yyvsp[-1].class_));
 }
-#line 1348 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1348 "jam-parser.tab.cc"
     break;
 
   case 6: /* classList: class ';' classList  */
-#line 81 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 81 "jam-parser.y"
                       {
   (yyval.classes) = mergeClass(singleClass((yyvsp[-2].class_)), (yyvsp[0].classes));
 }
-#line 1356 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1356 "jam-parser.tab.cc"
     break;
 
   case 7: /* feature: LET OBJECTID ':' TYPEID  */
-#line 87 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 87 "jam-parser.y"
                         {
   (yyval.feature) = new Attribute((yyvsp[-2].symbol), (yyvsp[0].symbol), new NilExpression());
 }
-#line 1364 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1364 "jam-parser.tab.cc"
     break;
 
   case 8: /* feature: LET OBJECTID ':' TYPEID '=' expression  */
-#line 90 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 90 "jam-parser.y"
                                          {
   (yyval.feature) = new Attribute((yyvsp[-4].symbol), (yyvsp[-2].symbol), (yyvsp[0].expression));
 }
-#line 1372 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1372 "jam-parser.tab.cc"
     break;
 
   case 9: /* feature: OBJECTID '(' formalList ')' ':' TYPEID '{' statementList '}'  */
-#line 93 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 93 "jam-parser.y"
                                                                {
   (yyval.feature) = new Method((yyvsp[-8].symbol), (yyvsp[-6].formals), (yyvsp[-3].symbol), (yyvsp[-1].statements));
 }
-#line 1380 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1380 "jam-parser.tab.cc"
     break;
 
   case 10: /* notemptyFeatureList: feature ';' notemptyFeatureList  */
-#line 99 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 99 "jam-parser.y"
                                 {
   (yyval.features) = mergeFeature(singleFeature((yyvsp[-2].feature)), (yyvsp[0].features));
 }
-#line 1388 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1388 "jam-parser.tab.cc"
     break;
 
   case 11: /* notemptyFeatureList: feature ';'  */
-#line 102 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 102 "jam-parser.y"
               {
   (yyval.features) = singleFeature((yyvsp[-1].feature));
 }
-#line 1396 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1396 "jam-parser.tab.cc"
     break;
 
   case 12: /* featureList: notemptyFeatureList  */
-#line 108 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 108 "jam-parser.y"
                     {
   (yyval.features) = (yyvsp[0].features);
 }
-#line 1404 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1404 "jam-parser.tab.cc"
     break;
 
   case 13: /* featureList: %empty  */
-#line 111 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 111 "jam-parser.y"
   {
   (yyval.features) = nilFeatures();
 }
-#line 1412 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1412 "jam-parser.tab.cc"
     break;
 
   case 14: /* formal: OBJECTID ':' TYPEID  */
-#line 117 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 117 "jam-parser.y"
                     {
   (yyval.formal) = new Formal((yyvsp[-2].symbol), (yyvsp[0].symbol));
 }
-#line 1420 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1420 "jam-parser.tab.cc"
     break;
 
   case 15: /* notemptyFormalList: formal ',' notemptyFormalList  */
-#line 123 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 123 "jam-parser.y"
                               {
   (yyval.formals) = mergeFormal(singleFormal((yyvsp[-2].formal)), (yyvsp[0].formals));
 }
-#line 1428 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1428 "jam-parser.tab.cc"
     break;
 
   case 16: /* notemptyFormalList: formal  */
-#line 126 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 126 "jam-parser.y"
          {
   (yyval.formals) = singleFormal((yyvsp[0].formal));
 }
-#line 1436 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1436 "jam-parser.tab.cc"
     break;
 
   case 17: /* formalList: notemptyFormalList  */
-#line 132 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 132 "jam-parser.y"
                    {
   (yyval.formals) = (yyvsp[0].formals);
 }
-#line 1444 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1444 "jam-parser.tab.cc"
     break;
 
   case 18: /* formalList: %empty  */
-#line 135 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 135 "jam-parser.y"
   {
   (yyval.formals) = nilFormals();
 }
-#line 1452 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1452 "jam-parser.tab.cc"
     break;
 
   case 19: /* expression: expression '+' expression  */
-#line 141 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 141 "jam-parser.y"
                           {
   (yyval.expression) = new PlusExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1460 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1460 "jam-parser.tab.cc"
     break;
 
   case 20: /* expression: expression '-' expression  */
-#line 144 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 144 "jam-parser.y"
                             {
   (yyval.expression) = new SubExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1468 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1468 "jam-parser.tab.cc"
     break;
 
   case 21: /* expression: expression '/' expression  */
-#line 147 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 147 "jam-parser.y"
                             {
   (yyval.expression) = new DivExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1476 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1476 "jam-parser.tab.cc"
     break;
 
   case 22: /* expression: expression '*' expression  */
-#line 150 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 150 "jam-parser.y"
                             {
   (yyval.expression) = new MulExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1484 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1484 "jam-parser.tab.cc"
     break;
 
   case 23: /* expression: expression EQ expression  */
-#line 153 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 153 "jam-parser.y"
                            {
   (yyval.expression) = new EqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1492 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1492 "jam-parser.tab.cc"
     break;
 
   case 24: /* expression: expression NE expression  */
-#line 156 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 156 "jam-parser.y"
                            {
   (yyval.expression) = new NeExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1500 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1500 "jam-parser.tab.cc"
     break;
 
   case 25: /* expression: expression '<' expression  */
-#line 159 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 159 "jam-parser.y"
                             {
   (yyval.expression) = new LtExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1508 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1508 "jam-parser.tab.cc"
     break;
 
   case 26: /* expression: expression LE expression  */
-#line 162 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 162 "jam-parser.y"
                            {
   (yyval.expression) = new LeqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1516 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1516 "jam-parser.tab.cc"
     break;
 
   case 27: /* expression: expression '>' expression  */
-#line 165 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 165 "jam-parser.y"
                             {
   (yyval.expression) = new RtExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1524 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1524 "jam-parser.tab.cc"
     break;
 
   case 28: /* expression: expression RE expression  */
-#line 168 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 168 "jam-parser.y"
                            {
   (yyval.expression) = new ReqExpr((yyvsp[-2].expression), (yyvsp[0].expression));
 }
-#line 1532 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1532 "jam-parser.tab.cc"
     break;
 
   case 29: /* expression: OBJECTID '=' expression  */
-#line 171 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 171 "jam-parser.y"
                           {
   (yyval.expression) = new AssignExpr((yyvsp[-2].symbol), (yyvsp[0].expression));
 }
-#line 1540 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1540 "jam-parser.tab.cc"
     break;
 
   case 30: /* expression: '!' expression  */
-#line 174 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 174 "jam-parser.y"
                  {
   (yyval.expression) = new NotExpr((yyvsp[0].expression));
 }
-#line 1548 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1548 "jam-parser.tab.cc"
     break;
 
   case 31: /* expression: expression '.' OBJECTID '(' expressionList ')'  */
-#line 177 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 177 "jam-parser.y"
                                                  {
   (yyval.expression) = new DispatchExpr((yyvsp[-5].expression), (yyvsp[-3].symbol), (yyvsp[-1].expressions));
 }
-#line 1556 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1556 "jam-parser.tab.cc"
     break;
 
   case 32: /* expression: NEW TYPEID  */
-#line 180 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 180 "jam-parser.y"
              {
   (yyval.expression) = new NewExpr((yyvsp[0].symbol));
 }
-#line 1564 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1564 "jam-parser.tab.cc"
     break;
 
   case 33: /* expression: '(' expression ')'  */
-#line 183 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 183 "jam-parser.y"
                      {
   (yyval.expression) = (yyvsp[-1].expression);
 }
-#line 1572 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1572 "jam-parser.tab.cc"
     break;
 
   case 34: /* expression: OBJECTID  */
-#line 186 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 186 "jam-parser.y"
            {
   (yyval.expression) = new ObjectExpr((yyvsp[0].symbol));
 }
-#line 1580 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1580 "jam-parser.tab.cc"
     break;
 
   case 35: /* expression: INT_CONST  */
-#line 189 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 189 "jam-parser.y"
             {
   (yyval.expression) = new IntExpr((yyvsp[0].symbol));
 }
-#line 1588 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1588 "jam-parser.tab.cc"
     break;
 
   case 36: /* expression: BOOL_CONST  */
-#line 192 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 192 "jam-parser.y"
              {
   (yyval.expression) = new BoolExpr((yyvsp[0].symbol));
 }
-#line 1596 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1596 "jam-parser.tab.cc"
     break;
 
   case 37: /* expression: STR_CONST  */
-#line 195 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 195 "jam-parser.y"
             {
   (yyval.expression) = new StrExpr((yyvsp[0].symbol));
 }
-#line 1604 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1604 "jam-parser.tab.cc"
     break;
 
   case 38: /* notemptyExpressionList: expression ',' notemptyExpressionList  */
-#line 201 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 201 "jam-parser.y"
                                       {
   (yyval.expressions) = mergeExpression(singleExpression((yyvsp[-2].expression)), (yyvsp[0].expressions));
 }
-#line 1612 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1612 "jam-parser.tab.cc"
     break;
 
   case 39: /* notemptyExpressionList: expression  */
-#line 204 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 204 "jam-parser.y"
              {
   (yyval.expressions) = singleExpression((yyvsp[0].expression));
 }
-#line 1620 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1620 "jam-parser.tab.cc"
     break;
 
   case 40: /* expressionList: notemptyExpressionList  */
-#line 210 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 210 "jam-parser.y"
                        {
   (yyval.expressions) = (yyvsp[0].expressions);
 }
-#line 1628 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1628 "jam-parser.tab.cc"
     break;
 
   case 41: /* expressionList: %empty  */
-#line 213 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 213 "jam-parser.y"
   {
   (yyval.expressions) = nilExpressions();
 }
-#line 1636 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1636 "jam-parser.tab.cc"
     break;
 
   case 42: /* statement: RETURN expression  */
-#line 219 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 219 "jam-parser.y"
                   {
   (yyval.statement) = new ReturnStat((yyvsp[0].expression));
 }
-#line 1644 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1644 "jam-parser.tab.cc"
     break;
 
   case 43: /* statement: IF expression THEN '{' statementList '}'  */
-#line 222 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 222 "jam-parser.y"
                                            {
   (yyval.statement) = new IfThenElseStat((yyvsp[-4].expression), (yyvsp[-1].statements), nilStatements());
 }
-#line 1652 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1652 "jam-parser.tab.cc"
     break;
 
   case 44: /* statement: IF expression THEN '{' statementList '}' ELSE '{' statementList '}'  */
-#line 225 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 225 "jam-parser.y"
                                                                       {
   (yyval.statement) = new IfThenElseStat((yyvsp[-8].expression), (yyvsp[-5].statements), (yyvsp[-1].statements));
 }
-#line 1660 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1660 "jam-parser.tab.cc"
     break;
 
   case 45: /* statement: FOR '(' expressionList ';' expression ';' expressionList ')' IN '{' statementList '}'  */
-#line 228 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 228 "jam-parser.y"
                                                                                         {
   (yyval.statement) = new ForLoopStat((yyvsp[-9].expressions), (yyvsp[-7].expression), (yyvsp[-5].expressions), (yyvsp[-1].statements));
 }
-#line 1668 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1668 "jam-parser.tab.cc"
     break;
 
   case 46: /* statement: VAR OBJECTID ':' TYPEID  */
-#line 231 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 231 "jam-parser.y"
                           {
   (yyval.statement) = new VarStat((yyvsp[-2].symbol), (yyvsp[0].symbol), new NilExpression());
 }
-#line 1676 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1676 "jam-parser.tab.cc"
     break;
 
   case 47: /* statement: VAR OBJECTID ':' TYPEID '=' expression  */
-#line 234 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 234 "jam-parser.y"
                                          {
   (yyval.statement) = new VarStat((yyvsp[-4].symbol), (yyvsp[-2].symbol), (yyvsp[0].expression));
 }
-#line 1684 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1684 "jam-parser.tab.cc"
     break;
 
   case 48: /* notemptyStatementList: statement ';' notemptyStatementList  */
-#line 240 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 240 "jam-parser.y"
                                     {
   (yyval.statements) = mergeStatement(singleStatement((yyvsp[-2].statement)), (yyvsp[0].statements));
 }
-#line 1692 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1692 "jam-parser.tab.cc"
     break;
 
   case 49: /* notemptyStatementList: statement ';'  */
-#line 243 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 243 "jam-parser.y"
                 {
   (yyval.statements) = singleStatement((yyvsp[-1].statement));
 }
-#line 1700 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1700 "jam-parser.tab.cc"
     break;
 
   case 50: /* statementList: notemptyStatementList  */
-#line 249 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 249 "jam-parser.y"
                       {
   (yyval.statements) = (yyvsp[0].statements);
 }
-#line 1708 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1708 "jam-parser.tab.cc"
     break;
 
   case 51: /* statementList: %empty  */
-#line 252 "/Users/gamejoye/compiler/jam/src/parser/jam-parser.y"
+#line 252 "jam-parser.y"
   {
   (yyval.statements) = nilStatements();
 }
-#line 1716 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1716 "jam-parser.tab.cc"
     break;
 
 
-#line 1720 "/Users/gamejoye/compiler/jam/include/jam-parser.tab.cpp"
+#line 1720 "jam-parser.tab.cc"
 
       default: break;
     }

@@ -20,7 +20,7 @@ include_directories(${CMAKE_SOURCE_DIR}/src/parser)
 file(GLOB_RECURSE TABLE_SOURCES "src/table/*.cpp")
 file(GLOB_RECURSE TREE_SOURCES "src/tree/*.cpp")
 file(GLOB_RECURSE UTILITIES_SOURCES "src/utilities/*.cpp")
-file(GLOB_RECURSE PARSER_SOURCES "src/parser/*.cpp")
+file(GLOB_RECURSE PARSER_SOURCES "src/parser/*.cc")
 
 set(ALL_SOURCES ${TABLE_SOURCES} ${TREE_SOURCES} ${UTILITIES_SOURCES} ${PARSER_SOURCES})
 add_library(jamlib ${ALL_SOURCES})
