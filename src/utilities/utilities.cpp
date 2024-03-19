@@ -1,6 +1,7 @@
 #include "tree.h"
 #include <string>
 #include <vector>
+#include <iostream>
 
 std::string mapToToken(int val) {
   switch (val) {
@@ -142,3 +143,5 @@ List<Statement *> singleStatement(Statement *statement1) {
   return new std::vector<Statement *>(1, statement1);
 }
 List<Statement *> nilStatements() { return new std::vector<Statement *>(0); }
+
+int errors = 0;
