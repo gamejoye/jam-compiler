@@ -20,6 +20,9 @@ public:
     items->push_back(p);
     return p;
   }
+  void clear() {
+    items->clear();
+  }
 };
 
 using StringTable = EntryTable<std::string>;
@@ -34,17 +37,14 @@ protected:
   List<List<std::pair<K, V>>> itemsList;
 
 public:
+  SymbolTable() {
+    itemsList = new std::vector<List<std::pair<K, V>>>(0);
+  }
   void enterScope() {
     List<std::pair<K, V>> newItems = new std::vector<std::pair<K, V>>(0);
     itemsList->push_back(newItems);
   }
-  void exitScope() {
-    if (itemsList->size() == 0) {
-      std::cerr << "can not exitScope without scope" << std::endl;
-      return;
-    }
-    itemsList->pop_back();
-  }
+  void exitScope() { itemsList->pop_back(); }
   V lookup(K item) {
     int n = itemsList->size();
     // start with the deepest nesting
@@ -53,11 +53,34 @@ public:
       int m = items->size();
       for (int j = 0; j < m; j++) {
         std::pair<K, V> current = items->at(j);
-        if (current->first == item) {
-          return current->second;
+        if (current.first == item) {
+          return current.second;
         }
       }
     }
     return nullptr;
+  }
+  V lookupFromCurrentScope(K item) {
+    if (itemsList->size() == 0)
+      return nullptr;
+    List<std::pair<K, V>> items = itemsList->back();
+    for (int j = 0; j < items->size(); j++) {
+      std::pair<K, V> current = items->at(j);
+      if (current.first == item) {
+        return current.second;
+      }
+    }
+    return nullptr;
+  }
+  bool addid(K key, V value) {
+    if (itemsList->size() == 0) {
+      return false;
+    }
+    List<std::pair<K, V>> currentScpoe = itemsList->back();
+    currentScpoe->push_back({key, value});
+    return true;
+  }
+  void clear() {
+    itemsList->clear();
   }
 };
