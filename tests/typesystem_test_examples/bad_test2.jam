@@ -1,0 +1,15 @@
+Class Main extends B {
+  make(): Animal {
+    return new Animal;
+  };
+};
+
+Class B {
+  make(): Dog {
+    return new Dog;
+  };
+};
+
+Class Animal { };
+
+Class Dog extends Animal { };

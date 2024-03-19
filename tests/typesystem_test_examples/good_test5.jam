@@ -1,0 +1,10 @@
+Class Main {
+  main(): Int {
+    var x: Int = 2;
+    for(x = 2; x < 100; x = x * x) in {
+      var y: Int;
+      for(y = 1; y < 5; y = y + 1) in { };
+    };
+    return x;
+  };
+};

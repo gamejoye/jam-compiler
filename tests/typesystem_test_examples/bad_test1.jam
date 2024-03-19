@@ -1,0 +1,10 @@
+Class Main extends B {
+  let x: Int = 1;
+  sqrt(): Int {
+    return x * z;
+  };
+};
+
+Class B {
+  let y: Int = 0;
+};

@@ -1,0 +1,18 @@
+Class Main extends C {
+  let m: Int = 0;
+  f(): A {
+    if(m == 0) then {
+      return new A;
+    };
+    if(m == 1) then {
+      return new B;
+    };
+    return new C;
+  };
+};
+
+Class A { };
+
+Class B extends A { };
+
+Class C extends A { };

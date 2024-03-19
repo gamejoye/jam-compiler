@@ -1,0 +1,25 @@
+Class Main extends C {
+  let m: Int = 0;
+  bark(): B {
+    return (new B);
+  };
+  drink(ins: A): A {
+    return ins;
+  };
+};
+
+Class C {
+  bark(): A {
+    return (new B);
+  };
+  drink(ins: B): A {
+    return (new A);
+  };
+  sleep(ins: A): Int {
+    return 1;
+  };
+};
+
+Class A { };
+
+Class B extends A { };

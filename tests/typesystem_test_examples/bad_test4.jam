@@ -1,0 +1,9 @@
+Class Main {
+  main(): Int {
+    return 1;
+  };
+};
+
+Class B extends A { };
+
+Class A extends B { };

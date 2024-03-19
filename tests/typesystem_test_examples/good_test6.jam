@@ -1,0 +1,25 @@
+Class Main {
+  main(): Int {
+    var x: Int = 2;
+    if(x != 0) then {
+      var y: Int = 100;
+      if(y == 100) then {
+        return x;
+      } else {
+        return y;
+      };
+    };
+
+    if(x != 2) then {
+      var y: Int = 200;
+      if(y == 100) then {
+        return y;
+      } else {
+        return x;
+      };
+    } else {
+      var x: Int = 1000;
+    };
+    return 1;
+  };
+};

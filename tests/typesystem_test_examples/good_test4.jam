@@ -1,0 +1,14 @@
+Class Main {
+  let m: Int = 0;
+  let ains: A = new A;
+  main(): Int {
+    var str: String = ains.bark();
+    return m * m * 1;
+  };
+};
+
+Class A {
+  bark(): String {
+    return "";
+  };
+};

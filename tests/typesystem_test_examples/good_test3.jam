@@ -1,0 +1,18 @@
+Class Main extends C {
+  let m: Int = 0;
+  f(): Int {
+    return m * a * b * c;
+  };
+};
+
+Class A {
+  let a: Int = 1;
+};
+
+Class B extends A {
+  let b: Int = 2;
+};
+
+Class C extends B {
+  let c: Int = 3;
+};
