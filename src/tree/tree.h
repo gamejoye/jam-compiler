@@ -44,18 +44,20 @@ public:
 };
 
 class Feature {
-  public:
-    // virtual void checkFeature() = 0;
+public:
+  virtual void checkFeature() = 0;
+  virtual bool isMethod() = 0;
+  virtual void addToTable(std::string classname) = 0;
 };
 
 class Expression {
-  public:
-    // virtual Symbol checkExpr() = 0;
+public:
+  virtual Symbol checkExpr() = 0;
 };
 
 class Statement {
-  public:
-    // virtual void checkStat() = 0;
+public:
+  virtual void checkStat() = 0;
 };
 
 class Method : public Feature {
@@ -77,6 +79,9 @@ public:
   List<Formal *> getFormals() { return formals; }
   Symbol getReturnType() { return returnType; }
   List<Statement *> getStatements() { return statements; }
+  void checkFeature();
+  bool isMethod() { return true; }
+  void addToTable(std::string classname);
 };
 
 class Attribute : public Feature {
@@ -93,7 +98,10 @@ public:
   }
   Symbol getName() { return name; }
   Symbol getType() { return type; }
-  Expression* getInit() { return init; }
+  Expression *getInit() { return init; }
+  void checkFeature();
+  bool isMethod() { return false; }
+  void addToTable(std::string classname);
 };
 
 class Formal {
@@ -108,11 +116,13 @@ public:
   }
   Symbol getName() { return name; }
   Symbol getType() { return type; }
+  void addToTable(std::string classname);
 };
 
 class NilExpression : public Expression {
 public:
   NilExpression() {}
+  Symbol checkExpr();
 };
 
 class PlusExpr : public Expression {
@@ -125,6 +135,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class SubExpr : public Expression {
@@ -137,6 +148,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class DivExpr : public Expression {
@@ -149,6 +161,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class MulExpr : public Expression {
@@ -161,6 +174,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class EqExpr : public Expression {
@@ -173,6 +187,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class NeExpr : public Expression {
@@ -185,6 +200,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class LtExpr : public Expression {
@@ -197,6 +213,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class LeqExpr : public Expression {
@@ -209,6 +226,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class RtExpr : public Expression {
@@ -221,6 +239,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class ReqExpr : public Expression {
@@ -233,6 +252,7 @@ public:
     this->e1 = e1;
     this->e2 = e2;
   }
+  Symbol checkExpr();
 };
 
 class AssignExpr : public Expression {
@@ -246,6 +266,7 @@ public:
     this->expr = expr;
   }
   Symbol getName() { return name; }
+  Symbol checkExpr();
 };
 
 class NotExpr : public Expression {
@@ -254,6 +275,7 @@ protected:
 
 public:
   NotExpr(Expression *e1) { this->e1 = e1; }
+  Symbol checkExpr();
 };
 
 class DispatchExpr : public Expression {
@@ -269,6 +291,7 @@ public:
     this->actual = actual;
   }
   Symbol getCalleName() { return calleeName; }
+  Symbol checkExpr();
 };
 
 class NewExpr : public Expression {
@@ -278,6 +301,7 @@ protected:
 public:
   NewExpr(Symbol type) { this->type = type; }
   Symbol getType() { return type; }
+  Symbol checkExpr();
 };
 
 class ObjectExpr : public Expression {
@@ -287,6 +311,7 @@ protected:
 
 public:
   ObjectExpr(Symbol name) { this->name = name; }
+  Symbol checkExpr();
 };
 
 class IntExpr : public Expression {
@@ -295,14 +320,16 @@ protected:
 
 public:
   IntExpr(Symbol val) { this->val = val; }
+  Symbol checkExpr();
 };
 
 class BoolExpr : public Expression {
 protected:
-  Symbol val;
+  int val;
 
 public:
-  BoolExpr(Symbol val) { this->val = val; }
+  BoolExpr(int val) { this->val = val; }
+  Symbol checkExpr();
 };
 
 class StrExpr : public Expression {
@@ -311,6 +338,7 @@ protected:
 
 public:
   StrExpr(Symbol val) { this->val = val; }
+  Symbol checkExpr();
 };
 
 class ReturnStat : public Statement {
@@ -319,6 +347,7 @@ protected:
 
 public:
   ReturnStat(Expression *expr) { this->expr = expr; }
+  void checkStat();
 };
 
 class IfThenElseStat : public Statement {
@@ -334,6 +363,7 @@ public:
     this->thenBlock = thenBlock;
     this->elseBlock = elseBlock;
   }
+  void checkStat();
 };
 
 class ForLoopStat : public Statement {
@@ -351,6 +381,7 @@ public:
     this->next = next;
     this->body = body;
   }
+  void checkStat();
 };
 
 class VarStat : public Statement {
@@ -367,4 +398,6 @@ public:
   }
   Symbol getName() { return name; }
   Symbol getType() { return type; }
+  void checkStat();
+  void addToTable(std::string classname);
 };
