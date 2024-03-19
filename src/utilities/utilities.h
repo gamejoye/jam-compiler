@@ -1,6 +1,7 @@
 #pragma once
 
 #include "tree.h"
+#include <iostream>
 #include <string>
 #include <vector>
 
@@ -27,3 +28,15 @@ List<Statement *> mergeStatement(List<Statement *> statements1,
                                  List<Statement *> statements2);
 List<Statement *> singleStatement(Statement *statement1);
 List<Statement *> nilStatements();
+
+extern int errors;
+template <typename First, typename... Rest>
+void semant_error(const First &first, const Rest &...rest) {
+  std::cerr << first;
+  if constexpr (sizeof...(rest) > 0) {
+    semant_error(rest...);
+  } else {
+    errors++;
+    std::cerr << std::endl;
+  }
+}
